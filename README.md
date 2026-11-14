@@ -1,5 +1,13 @@
 # Day 06 · Data Lab · Field-to-Release PoC (AI20K · Data Track)
 
+## Bài nộp — Nhóm G08 · T08 Retention & Delete Request Simulator
+- Repo: https://github.com/trngiahuyyyy/K5-L2-DAY06-TranGiaHuy-2A202603049-DataGovernanceAndPrivacy
+- Tag: `demo-180m`, `final-24h`
+- Run: `python -m src.main --input fixtures/t08_deletion --config configs/lab.yaml --output out/ --offline --seed 42`
+- Evaluate (giảng viên, cần `gt/`): `python -m src.evaluate --track t08 --pred out/actions.csv --out reports/metrics_poc.json`
+- Tests: `pytest -q`
+- Báo cáo: `reports/group_report.md`
+
 Starter repo cho bài lab **Data Pipeline, Privacy & Production PoC**: 14 challenge (T01–T14), một contract chung.
 Repo cung cấp **dữ liệu offline + hạ tầng dùng chung + metric chuẩn + template báo cáo** để nhóm tập trung vào phần quan trọng:
 vấn đề, baseline, thuật toán, đánh giá trung thực, human-in-the-loop và quyết định GO/HOLD/REWORK.
