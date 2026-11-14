@@ -10,6 +10,8 @@ Nothing is really deleted (mock data); `dry_run` only controls the `executed` co
 """
 from __future__ import annotations
 
+from pathlib import Path
+
 import pandas as pd
 
 from . import t08_policy as P
@@ -51,9 +53,10 @@ def process(ctx: RunContext, data: dict) -> pd.DataFrame:
                       actor_group=str(ctx.param("actor_group", "data-platform")),
                       include_derived_other=bool(ctx.param("emit_derived_other", True)))
     for r in rows:
-        ctx.audit.log(actor="pipeline", action=f"plan_{r['action']}", item_id=P.item_id(r),
-                      after={"reason_code": r["reason_code"], "type": r["type"], "uri": r["uri"],
-                             "subjects": r["subject_ids"]})
+        # item_id = bare artefact_id: the evaluator matches audit entries to actions.csv by artefact_id
+        ctx.audit.log(actor="pipeline", action=f"plan_{r['action']}", item_id=r["artefact_id"],
+                      after={"request_id": r["request_id"], "reason_code": r["reason_code"], "type": r["type"],
+                             "uri": r["uri"], "subjects": r["subject_ids"]})
     df = pd.DataFrame(rows, columns=_COLS)
     df["executed"] = (df["action"] == "delete") & (not dry_run)
     ctx.stats["dry_run"] = dry_run
@@ -80,9 +83,14 @@ def rank(ctx: RunContext, scored: pd.DataFrame) -> pd.DataFrame:
 
 # ---------------------------------------------------------------- 04 review
 def review(ctx: RunContext, scored: pd.DataFrame, queue: pd.DataFrame) -> pd.DataFrame:
-    reviewed_path = ctx.output_dir / "review_queue_reviewed.csv"
-    if not reviewed_path.exists():
+    # look next to review_queue.csv first (ctx.out), then ctx.output_dir; never skip silently
+    candidates = [Path(ctx.out("review_queue_reviewed.csv")), Path(ctx.output_dir) / "review_queue_reviewed.csv"]
+    reviewed_path = next((c for c in candidates if c.exists()), None)
+    ctx.stats["review_file_found"] = reviewed_path is not None
+    if reviewed_path is None:
+        ctx.stats["review_file_searched"] = [str(c) for c in candidates]
         return scored
+    ctx.stats["review_file"] = str(reviewed_path)
     ctx.stats["n_reviewed"] = len(load_review_decisions(reviewed_path))   # validates reviewer column
     rv = pd.read_csv(reviewed_path, dtype=str).fillna("")
     id_col = "item_id" if "item_id" in rv.columns else rv.columns[0]
@@ -92,8 +100,9 @@ def review(ctx: RunContext, scored: pd.DataFrame, queue: pd.DataFrame) -> pd.Dat
             rv[col] = ""
     rows, events = P.apply_review(scored.to_dict("records"), rv.to_dict("records"))
     for e in events:
-        ctx.audit.log(actor=e["reviewer"], action=f"review_{e['decision']}_{e['outcome']}", item_id=e["item_id"],
-                      after={"before": e["before"], "after": e["after"], "detail": e["detail"]})
+        req_id, art_id = e["item_id"].split("|", 1)
+        ctx.audit.log(actor=e["reviewer"], action=f"review_{e['decision']}_{e['outcome']}", item_id=art_id,
+                      after={"request_id": req_id, "before": e["before"], "after": e["after"], "detail": e["detail"]})
     ctx.stats["n_override_refused"] = sum(e["outcome"] == "refused" for e in events)
     out = pd.DataFrame(rows)
     dry_run = bool(ctx.param("dry_run", True))

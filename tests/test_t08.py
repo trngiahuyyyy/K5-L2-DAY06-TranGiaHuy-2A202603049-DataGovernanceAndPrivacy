@@ -1,4 +1,5 @@
 """T08 tests: pure-policy unit tests (synthetic graph) + end-to-end invariants on the real fixture."""
+import csv
 import json
 from pathlib import Path
 
@@ -122,9 +123,36 @@ def test_real_fixture_never_deletes_protected_artefacts(tmp_path):
         a = graph[r.artefact_id]
         assert not a["legal_hold"] and a["origin_known"] and a["acl"] == ["data-platform"]
         assert a["subject_ids"] == [reqs[r.request_id]]       # single-subject, the requester's own data
-    assert (tmp_path / "audit_log.jsonl").exists() and (tmp_path / "decision.json").exists()
+    assert (tmp_path / "decision.json").exists()
+    # audit trace completeness: the evaluator matches audit `item_id` to actions.csv `artefact_id`
+    audit = tmp_path / "audit_log.jsonl"
+    assert audit.exists()
+    logged = {json.loads(l).get("item_id") for l in audit.read_text(encoding="utf-8").splitlines() if l.strip()}
+    assert set(acts_df["artefact_id"]) <= logged
 
 
 def test_real_fixture_is_idempotent(tmp_path):
     assert _run(tmp_path / "r1") == 0 and _run(tmp_path / "r2") == 0
     assert (tmp_path / "r1" / "actions.csv").read_bytes() == (tmp_path / "r2" / "actions.csv").read_bytes()
+
+
+def test_reviewed_queue_in_output_dir_is_applied(tmp_path):
+    """Regression: the reviewed file placed next to review_queue.csv must be picked up (not skipped silently)."""
+    hdr = ["rank", "item_id", "score", "reason", "suggested_action", "slice", "evidence_path",
+           "reviewer", "reviewer_decision", "override_value", "review_note", "reviewed_at"]
+    def row(iid, dec, val, note):
+        r = dict.fromkeys(hdr, "")
+        r.update(item_id=iid, reviewer="tester", reviewer_decision=dec, override_value=val, review_note=note)
+        return r
+    rows = [row("DR-003|a0067", "edit", "delete", "both co-subjects requested deletion"),
+            row("DR-002|a0043", "edit", "delete", "TEST: must be refused")]
+    with open(tmp_path / "review_queue_reviewed.csv", "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=hdr)
+        w.writeheader()
+        w.writerows(rows)
+    assert _run(tmp_path) == 0
+    a = pd.read_csv(tmp_path / "actions.csv").set_index(["request_id", "artefact_id"]).action
+    assert a[("DR-003", "a0067")] == "delete"                 # reviewer override applied
+    assert a[("DR-002", "a0043")] == "retain_legal_hold"      # legal hold cannot be overridden
+    info = json.loads((tmp_path / "run_info.json").read_text(encoding="utf-8"))
+    assert info["stats"]["review_file_found"] is True and info["stats"]["n_override_refused"] == 1

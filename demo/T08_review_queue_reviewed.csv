@@ -1,0 +1,38 @@
+rank,item_id,score,reason,suggested_action,slice,evidence_path,reviewer,reviewer_decision,override_value,review_note,reviewed_at
+1,DR-004|a0075,0.9,ORIGIN_UNKNOWN | embedding | subj_05,,,,Tran Gia Huy,approve,,Origin unknown: keep escalated until provenance of this embedding is traced,2026-11-14
+2,DR-004|a0079,0.9,ORIGIN_UNKNOWN | embedding | subj_05,,,,,,,,
+3,DR-004|a0083,0.9,ORIGIN_UNKNOWN | embedding | subj_05,,,,,,,,
+4,DR-008|a0156,0.9,NO_PERMISSION | backup | subj_11,,,,Tran Gia Huy,escalate,,ACL is vendor-x only: data-platform has no permission; ask vendor-x to delete,2026-11-14
+5,DR-001|a0212,0.8,SHARED_EXPORT | training_export | subj_00;subj_01;subj_02;subj_04;subj_05;subj_06;subj_07;subj_10;subj_13,,,,,,,,
+6,DR-002|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,Tran Gia Huy,approve,,"Shared training export (10 subjects, 8 requested): keep escalated and re-export without requesters",2026-11-14
+7,DR-003|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+8,DR-003|a0212,0.8,SHARED_EXPORT | training_export | subj_00;subj_01;subj_02;subj_04;subj_05;subj_06;subj_07;subj_10;subj_13,,,,,,,,
+9,DR-004|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+10,DR-004|a0212,0.8,SHARED_EXPORT | training_export | subj_00;subj_01;subj_02;subj_04;subj_05;subj_06;subj_07;subj_10;subj_13,,,,,,,,
+11,DR-005|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+12,DR-005|a0212,0.8,SHARED_EXPORT | training_export | subj_00;subj_01;subj_02;subj_04;subj_05;subj_06;subj_07;subj_10;subj_13,,,,,,,,
+13,DR-007|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+14,DR-008|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+15,DR-009|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+16,DR-010|a0211,0.8,SHARED_EXPORT | training_export | subj_03;subj_04;subj_05;subj_06;subj_07;subj_09;subj_10;subj_11;subj_12;subj_14,,,,,,,,
+17,DR-001|a0011,0.7,MULTI_SUBJECT | frame | subj_00;subj_01,,,,Tran Gia Huy,skip,,Frame shared with subj_00 who has no deletion request: decide later,2026-11-14
+18,DR-001|a0014,0.7,MULTI_SUBJECT | annotation | subj_00;subj_01,,,,,,,,
+19,DR-003|a0067,0.7,MULTI_SUBJECT | frame | subj_04;subj_05,,,,Tran Gia Huy,edit,delete,Frame shared by subj_04 and subj_05; both have verified deletion requests DR-003 and DR-004,2026-11-14
+20,DR-003|a0070,0.7,MULTI_SUBJECT | annotation | subj_04;subj_05,,,,Tran Gia Huy,edit,delete,Annotation of shared frame a0067; both co-subjects have verified deletion requests,2026-11-14
+21,DR-004|a0067,0.7,MULTI_SUBJECT | frame | subj_04;subj_05,,,,,,,,
+22,DR-004|a0070,0.7,MULTI_SUBJECT | annotation | subj_04;subj_05,,,,,,,,
+23,DR-006|a0123,0.7,MULTI_SUBJECT | frame | subj_08;subj_09,,,,,,,,
+24,DR-006|a0126,0.7,MULTI_SUBJECT | annotation | subj_08;subj_09,,,,,,,,
+25,DR-007|a0123,0.7,MULTI_SUBJECT | frame | subj_08;subj_09,,,,,,,,
+26,DR-007|a0126,0.7,MULTI_SUBJECT | annotation | subj_08;subj_09,,,,,,,,
+27,DR-009|a0179,0.7,MULTI_SUBJECT | frame | subj_12;subj_13,,,,,,,,
+28,DR-009|a0182,0.7,MULTI_SUBJECT | annotation | subj_12;subj_13,,,,,,,,
+29,DR-002|a0044,0.6,COPY_OF_HELD_ARTEFACT | backup | subj_03,,,,Tran Gia Huy,approve,,Backup is a copy of raw a0043 under LH-2026-03: keep escalated until hold is lifted,2026-11-14
+30,DR-005|a0100,0.6,COPY_OF_HELD_ARTEFACT | backup | subj_07,,,,,,,,
+31,DR-001|a0012,0.5,DERIVED_OTHER_SUBJECT | face_crop | subj_00,,,,,,,,
+32,DR-001|a0013,0.5,DERIVED_OTHER_SUBJECT | embedding | subj_00,,,,,,,,
+33,DR-004|a0068,0.5,DERIVED_OTHER_SUBJECT | face_crop | subj_04,,,,,,,,
+34,DR-004|a0069,0.5,DERIVED_OTHER_SUBJECT | embedding | subj_04,,,,,,,,
+35,DR-007|a0124,0.5,DERIVED_OTHER_SUBJECT | face_crop | subj_08,,,,,,,,
+36,DR-007|a0125,0.5,DERIVED_OTHER_SUBJECT | embedding | subj_08,,,,,,,,
+37,DR-002|a0043,0.0,LEGAL_HOLD | raw_video | subj_03,,,,Tran Gia Huy,edit,delete,TEST: attempt to override legal hold - must be refused,2026-11-14
