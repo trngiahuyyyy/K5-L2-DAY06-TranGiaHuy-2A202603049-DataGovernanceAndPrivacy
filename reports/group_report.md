@@ -13,8 +13,8 @@
 | Thành viên (5–6) + vai trò | 1. Trần Gia Huy (Lead/Integrator) · 2. Trần Gia Huy (Data & fixtures) · 3. Trần Gia Huy (Core algorithm) · 4. Trần Gia Huy (QA/metric) · 5. Trần Gia Huy (Review + report) · 6. — (nhóm 1 người, kiêm nhiệm mọi vai) |
 | Git URL | https://github.com/trngiahuyyyy/K5-L2-DAY06-TranGiaHuy-2A202603049-DataGovernanceAndPrivacy |
 | Tag `demo-180m` (commit) | 80eb555 |
-| Tag `final-24h` (commit) | ____ |
-| Deadline (giờ VN) | ____ |
+| Tag `final-24h` (commit) | dd3f938 |
+| Deadline (giờ VN) | 12:00 AM 15/11/2026 |
 
 ## 01 · Problem statement
 
@@ -121,8 +121,8 @@ pytest -q
 | URL | Ngày xem | 1–2 dòng ý nghĩa (không chép nguyên văn) |
 |---|---|---|
 | https://github.com/VinUni-AI20k/K5-Day6-L2-DataGovernanceAndPrivacy | 14/11/2026 | Đề bài T08: hợp đồng đầu ra, metric và thứ tự ưu tiên luật. |
-| https://gdpr-info.eu/art-17-gdpr/ | ____ | Quyền xóa và ngoại lệ ở khoản 3 khi còn nghĩa vụ pháp lý lưu giữ. |
-| https://thuvienphapluat.vn/van-ban/Quyen-dan-su/Nghi-dinh-356-2025-ND-CP-huong-dan-Luat-Bao-ve-du-lieu-ca-nhan-687428.aspx | ____ | Nghị định 356/2025/NĐ-CP (31/12/2025) hướng dẫn Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15, hiệu lực 01/01/2026. |
+| https://gdpr-info.eu/art-17-gdpr/ | 14/11/2026 | Quyền xóa và ngoại lệ ở khoản 3 khi còn nghĩa vụ pháp lý lưu giữ. |
+| https://thuvienphapluat.vn/van-ban/Quyen-dan-su/Nghi-dinh-356-2025-ND-CP-huong-dan-Luat-Bao-ve-du-lieu-ca-nhan-687428.aspx | 14/11/2026 | Nghị định 356/2025/NĐ-CP (31/12/2025) hướng dẫn Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15, hiệu lực 01/01/2026. |
 
 ---
 
