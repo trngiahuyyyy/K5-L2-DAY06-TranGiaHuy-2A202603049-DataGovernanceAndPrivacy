@@ -13,7 +13,7 @@
 | Thành viên (5–6) + vai trò | 1. Trần Gia Huy (Lead/Integrator) · 2. Trần Gia Huy (Data & fixtures) · 3. Trần Gia Huy (Core algorithm) · 4. Trần Gia Huy (QA/metric) · 5. Trần Gia Huy (Review + report) · 6. — (nhóm 1 người, kiêm nhiệm mọi vai) |
 | Git URL | https://github.com/trngiahuyyyy/K5-L2-DAY06-TranGiaHuy-2A202603049-DataGovernanceAndPrivacy |
 | Tag `demo-180m` (commit) | 80eb555 |
-| Tag `final-24h` (commit) | dd3f938 |
+| Tag `final-24h` (commit) | 55ee951 |
 | Deadline (giờ VN) | 12:00 AM 15/11/2026 |
 
 ## 01 · Problem statement
