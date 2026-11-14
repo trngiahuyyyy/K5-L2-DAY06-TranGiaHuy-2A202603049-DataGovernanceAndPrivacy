@@ -1,6 +1,6 @@
 member,git_author_name,git_email,role,modules_files,commit_shas,evidence_note,presenter
-Member 1,,,Lead / Integrator,src/main.py; configs/,,,
-Member 2,,,Data & fixtures,fixtures/; tools/,,,
-Member 3,,,Core algorithm,src/pipeline.py,,,
-Member 4,,,QA / metric,tests/; reports/metrics_*.json,,,
-Member 5,,,Human review + report,reports/group_report.md; demo/,,,
+Member 1,Tran Gia Huy,26ai.huytg2@vinuni.edu.vn,Lead / Integrator,src/main.py; configs/,af1a23a,"Nhom 1 nguoi: chon track T08, cau hinh configs/lab.yaml (group G08), tich hop va chay CLI",Yes
+Member 2,,,Data & fixtures,fixtures/; tools/,80eb555,"Nhom 1 nguoi: do Member 1 (Tran Gia Huy) dam nhiem; tools/t08_selfcheck.py",No
+Member 3,,,Core algorithm,src/pipeline.py,80eb555; 404c5f0,"Nhom 1 nguoi: do Member 1 dam nhiem; pipeline.py, t08_policy.py, t08_baseline.py",No
+Member 4,,,QA / metric,tests/; reports/metrics_*.json,80eb555; 404c5f0,"Nhom 1 nguoi: do Member 1 dam nhiem; tests/test_t08.py (11 test); khong co metrics_*.json do thieu gt/",No
+Member 5,,,Human review + report,reports/group_report.md; demo/,404c5f0,"Nhom 1 nguoi: do Member 1 dam nhiem; demo/ chua bang chung vong duyet; commit bao cao: dien sau",No
